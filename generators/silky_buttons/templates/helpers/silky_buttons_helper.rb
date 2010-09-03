@@ -13,7 +13,7 @@ module SilkyButtonsHelper
       options[:text] = "#{options[:icon]} #{options[:text]}"
     end
     options.merge!({ :class => "button #{options[:class]}" })
-    content_tag :button, options[:text], options.delete_if { |k, v| [:icon, :text].include? k }
+    content_tag :button, options[:text].html_safe, options.delete_if { |k, v| [:icon, :text].include? k }
   end
 
   def show_button(resource, options={})
@@ -56,7 +56,7 @@ module SilkyButtonsHelper
       options[:text] = "#{options[:icon]} #{options[:text]}"
     end
     options.merge!({ :class => "button #{options[:class]}" })
-    link_to options[:text], options[:path], options.delete_if { |k, v| [:icon, :text, :path].include? k }
+    link_to options[:text].html_safe, options[:path], options.delete_if { |k, v| [:icon, :text, :path].include? k }
   end
   
 end
