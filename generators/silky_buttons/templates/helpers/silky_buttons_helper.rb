@@ -18,22 +18,22 @@ module SilkyButtonsHelper
 
   def show_button(resource, options={})
     options[:icon]  ||= "eye.png"
-    options[:text]  ||= "Show #{resource.class.to_s.humanize}"
+    options[:text]  ||= "#{t('silky_buttons.show')} #{resource.class.model_name.human}"
     options[:path]  ||= polymorphic_path(resource)
     resource_button(resource, options)
   end
 
-  def new_button(resource, options={})
+  def new_button(resource_class, options={})
     options[:class]   = "positive #{options[:class]}"
     options[:icon]  ||= "add.png"
-    options[:text]  ||= "New #{resource.class.to_s.humanize}"
-    options[:path]  ||= new_polymorphic_path(resource)
-    resource_button(resource, options)
+    options[:text]  ||= "#{t('silky_buttons.new')} #{resource_class.model_name.human}"
+    options[:path]  ||= new_polymorphic_path(resource_class)
+    resource_button(resource_class, options)
   end
 
   def edit_button(resource, options={})
     options[:icon]  ||= "pencil.png"
-    options[:text]  ||= "Edit #{resource.class.to_s.humanize}"
+    options[:text]  ||= "#{t('silky_buttons.edit')} #{resource.class.model_name.human}"
     options[:path]  ||= edit_polymorphic_path(resource)
     resource_button(resource, options)
   end
@@ -41,15 +41,29 @@ module SilkyButtonsHelper
   def destroy_button(resource, options={})
     options[:class]   = "negative #{options[:class]}"
     options[:method]  ||= :delete
-    options[:confirm] ||= "Are you sure?"
+    options[:confirm] ||= "#{t('silky_buttons.destroy.button')}"
     options[:icon]    ||= "delete.png"
-    options[:text]    ||= "Delete #{resource.class.to_s.humanize}"
+    options[:text]    ||= "#{t('silky_buttons.destroy.confirm')} #{resource.class.model_name.human}"
     options[:path]    ||= polymorphic_path(resource)
     resource_button(resource, options)
   end
 
+  def index_button(resource, options={})
+    options[:icon]  ||= "house.png"
+    options[:text]  ||= "#{t('silky_buttons.index')}"
+    options[:path]  ||= polymorphic_path(resource.class)
+    resource_button(resource, options)
+  end
+
+  def back_button(resource, options={})
+    options[:icon]  ||= "arrow_left.png"
+    options[:text]  ||= "#{t('silky_buttons.back')}"
+    options[:path]  ||= url_for(:back)
+    resource_button(resource, options)
+  end
+
   def resource_button(resource, options={})
-    options[:text]        ||= resource.class.to_s.humanize
+    options[:text]        ||= resource.class.model_name.human
     options[:path]        ||= polymorphic_path(resource)
     unless options[:icon].blank?
       options[:icon] = silk_image(options[:icon])
