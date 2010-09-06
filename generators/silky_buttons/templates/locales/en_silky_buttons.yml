@@ -1,0 +1,10 @@
+en:
+  silky_buttons:
+    show: Show
+    new: New
+    edit: Edit
+    destroy:
+      button: Delete
+      confirm: Are you sure?
+    index: Index
+    back: Back

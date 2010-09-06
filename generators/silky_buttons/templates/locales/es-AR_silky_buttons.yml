@@ -1,0 +1,10 @@
+es-AR:
+  silky_buttons:
+    show: Mostrar
+    new: Crear
+    edit: Modificar
+    destroy:
+      button: Eliminar
+      confirm: ¿Esta seguro?
+    index: Lista
+    back: Atras
