@@ -20,6 +20,10 @@ class SilkyButtonsGenerator < Rails::Generator::Base
         Dir.new(dir).entries.each do |name|
           m.file("images/silk/icons/#{name}", "public/images/silk/icons/#{name}") if name.length > 2
         end
+      # locales
+        m.directory('app/config/locales')
+        m.file('locales/en_silky_buttons.yml', 'app/config/locales/en_silky_buttons.yml')
+        m.file('locales/es-AR_silky_buttons.yml', 'app/config/locales/es-AR_silky_buttons.yml')
       # readme
         m.readme "INSTALL"
     end
